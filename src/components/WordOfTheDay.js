@@ -1,9 +1,8 @@
 import React from "react";
+import { Jumbotron } from "reactstrap";
 
 class WordOfTheDay extends React.Component {
-  state = {
-    word: null,
-  };
+  state = { word: "" };
 
   componentDidMount() {
     this.fetchWordOfTheDay();
@@ -19,12 +18,14 @@ class WordOfTheDay extends React.Component {
       },
     })
       .then((response) => response.json())
-      .then((data, response) => console.log(data, response))
-      .then((response) => {
-        this.setState({
-          word: response.word,
-        });
-      })
+      .then((response) => {return response})
+    //   .then((response) => {
+    //     this.setState({
+    //       word: response.word,
+    //       results: response.results,
+
+    //     });
+    //   })
       .catch((err) => {
         console.log(err);
       });
@@ -32,11 +33,13 @@ class WordOfTheDay extends React.Component {
 
   render() {
     return (
-      <>
-        <h1>WordOfTheDay</h1>
-        <ul>{this.state.word}</ul>
-        <ul></ul>
-      </>
+      <div>
+        <Jumbotron>
+          <h1 className="display-3">Word Of The Day</h1>
+          <ul>{this.state.word}</ul>
+          <ul></ul>
+        </Jumbotron>
+      </div>
     );
   }
 }

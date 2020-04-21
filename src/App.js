@@ -1,15 +1,22 @@
 import React from "react";
-import logo from "./logo.svg";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import WordOfTheDay from "./components/WordOfTheDay";
+import NavBar from './components/NavBar'
+import Home from './components/Home'
+import Words from './components/Words'
 
 function App() {
 
   return (
-    <div className="App">
-      Welcome To Word Of The Day
-      <WordOfTheDay />
-    </div>
+    <Router>
+      <NavBar />
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/word-of-the-day" component={WordOfTheDay}/>
+        <Route path="/words" component={Words}/> 
+      </Switch>
+    </Router>
   );
 }
 
