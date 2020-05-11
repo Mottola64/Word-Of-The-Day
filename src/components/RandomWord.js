@@ -10,22 +10,23 @@ class RandomWord extends React.Component {
   }
 
   fetchRandomWord = () => {
-    fetch("http://api.wordnik.com/v4/words.json/randomWord?api_key=YOURKEYHERE", {
-      method: "GET",
-      headers: {
-        "x-rapidapi-key": `${process.env.REACT_APP_API_KEY}`,
-        "content-type": "application/json",
-      },
-    })
+    // https://api.wordnik.com/v4/words.json/randomWord?hasDictionaryDef=true&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=-1&api_key=YOURAPIKEY
+    fetch(
+      `https://api.wordnik.com/v4/words.json/randomWord?hasDictionaryDef=true&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=-1&api_key=${process.env.REACT_APP_API_KEY_WORDNIK}`,
+      {
+        method: "GET",
+      }
+    )
       .then((response) => response.json())
-      .then((response) => {return response})
-    //   .then((response) => {
-    //     this.setState({
-    //       word: response.word,
-    //       results: response.results,
-
-    //     });
-    //   })
+      .then((response) => {
+        return response;
+      })
+      .then((response) => {
+        this.setState({
+          word: response.word,
+          results: response.results,
+        });
+      })
       .catch((err) => {
         console.log(err);
       });

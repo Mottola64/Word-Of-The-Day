@@ -1,9 +1,12 @@
 import React from 'react'
+import RandomWord from './RandomWord'
 
 class Words extends React.Component {
     render() {
         return (
-            <div>DISPLAY WORDS</div>
+            <div>DISPLAY WORDS
+                <RandomWord />
+            </div>
         )
     }
 }
